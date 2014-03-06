@@ -1,7 +1,7 @@
 Q = require "q"
 should = require "should"
 webdriver = require "selenium-webdriver"
-By = webdriver.By
+protractor = require 'protractor'
 
 _destroyed = false
 module.exports = class World
@@ -11,6 +11,7 @@ module.exports = class World
             withCapabilities(webdriver.Capabilities[browser]()).build()
 
         @driver.manage().timeouts().setScriptTimeout(10000)
+        @ptor = protractor.wrapDriver @driver
 
     visit: (url)->
         Q @driver.get(url)

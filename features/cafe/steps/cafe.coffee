@@ -1,16 +1,19 @@
 Q = require 'q'
 should = require "should"
+pages = require('../../../lib/cafe').pages
 
 module.exports = ->
     require('qcumber')(@)
     require('../../../lib/cafe').steps.call(@)
+    homepage = new pages.homepage()
 
     @Given /at the cafe homepage/, ->
-        url = 'http://thomasburleson.github.io/angularJS-CafeTownsend/'
+        url = process.env.CAFE_BASE_URL
         @world.visit(url)
 
-    @Then /should see "([^"]*)" in the title/, (what) ->
-        @world.title()
-        .then (text)->
-            text.indexOf(what).should.be.greaterThan -1,
-                "'#{what}' expected in title (#{text})"
+    @When /login with username of "([^"]*)" and password of "([^"]*)"/, (username, password)->
+        homepage.login username, password
+
+    @Then /see my name as "([^"]*)"/, (name)->
+        homepage.getUserName().then (text) ->
+            text.should.be.equal name
