@@ -15,7 +15,10 @@ module.exports = class Homepage
         @element(By.model 'user.userName').clear()
         @element(By.model 'user.userName').sendKeys username
         @element(By.model 'user.password').sendKeys password
-        @element(By.tagName 'button').click()
+        @element(By.partialButtonText 'Login').click()
+
+    logout: ->
+        @element(By.className 'logout').click()
 
     getUserName: ->
         Q @element(By.className 'session-user').getText()
