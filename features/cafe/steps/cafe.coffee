@@ -52,3 +52,9 @@ module.exports = ->
         inList.should.equal true, "expected #{name} to be in the employee list"
       else
         inList.should.equal false, "expected #{name} not to be in the employee list"
+
+  @Then /should see the following employees in the employee list:$/, (table)->
+    for row in table.hashes()
+      name = row['name']
+      employees.isEmployeeInList(name).then (inList) ->
+        inList.should.equal true, "expected #{name} to be in the employee list"
