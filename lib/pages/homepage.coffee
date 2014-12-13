@@ -5,20 +5,19 @@ By = protractor.By
 
 module.exports = class Homepage
 
-    constructor: ->
-        @world = World.get()
-        @browser = @world.ptor
-        @element = @browser.element
-        @driver = @browser.driver
+  constructor: ->
+    @world = World.get()
+    @browser = @world.ptor
+    @element = @browser.element
+    @driver = @browser.driver
 
-    login: (username, password)->
-        @element(By.model 'user.userName').clear()
-        @element(By.model 'user.userName').sendKeys username
-        @element(By.model 'user.password').sendKeys password
-        @element(By.partialButtonText 'Login').click()
+  login: (username, password)->
+    @element(By.model 'user.userName').clear().sendKeys username
+    @element(By.model 'user.password').clear().sendKeys password
+    @element(By.partialButtonText 'Login').click()
 
-    logout: ->
-        @element(By.className 'logout').click()
+  logout: ->
+    @element(By.className 'logout').click()
 
-    getUserName: ->
-        Q @element(By.className 'session-user').getText()
+  getUserName: ->
+    Q @element(By.className 'session-user').getText()
