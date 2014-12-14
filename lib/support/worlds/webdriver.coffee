@@ -1,11 +1,11 @@
-Q = require "q"
-should = require "should"
-webdriver = require "selenium-webdriver"
+Q = require 'q'
+should = require 'should'
+webdriver = require 'selenium-webdriver'
 protractor = require 'protractor'
 
 _destroyed = false
 module.exports = class World
-  constructor: (browser = "firefox")->
+  constructor: (browser = process.env.PARALLEL_CUCUMBER_PROFILE || 'firefox')->
     @driver = new webdriver.Builder().
     usingServer(process.env.SELENIUM_HUB).
     withCapabilities(webdriver.Capabilities[browser]()).build()

@@ -1,5 +1,5 @@
 module.exports = (grunt)->
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt)
 
   grunt.initConfig
     env:
@@ -13,5 +13,10 @@ module.exports = (grunt)->
       options:
         format: 'pretty'
 
-  grunt.registerTask 'test', ['env:dev', 'selenium-launch', 'cucumberjs:cafe']
+    shell:
+      features:
+        command: './node_modules/.bin/parallel-cucumber-js --workers 4 --profiles.firefox --profiles.chrome'
+
+  grunt.registerTask 'test:parallel', ['env:dev', 'shell:features']
+  grunt.registerTask 'test', ['env:dev', 'cucumberjs']
   grunt.registerTask 'default', ['test']
