@@ -25,9 +25,9 @@ module.exports = class Homepage
     @getEmployeeIndex(name).then (index) ->
       index > -1
 
-  selectEmployee: (name)->
+  selectEmployee: (name) ->
     @getEmployeeIndex(name).then (index) =>
-      @getEmployees().then (items) =>
+      @getEmployees().then (items) ->
         items[index].click()
 
   deleteEmployee: ->

@@ -5,7 +5,7 @@ protractor = require 'protractor'
 
 _destroyed = false
 module.exports = class World
-  constructor: (browser = "chrome")->
+  constructor: (browser = "chrome") ->
     @driver = new webdriver.Builder().
     usingServer(process.env.SELENIUM_HUB).
     withCapabilities(webdriver.Capabilities[browser]()).build()
@@ -13,7 +13,7 @@ module.exports = class World
     @driver.manage().timeouts().setScriptTimeout(10000)
     @ptor = protractor.wrapDriver @driver
 
-  visit: (url)->
+  visit: (url) ->
     Q @driver.get(url)
 
   title: ->

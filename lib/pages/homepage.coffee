@@ -11,7 +11,7 @@ module.exports = class Homepage
     @element = @browser.element
     @driver = @browser.driver
 
-  login: (username, password)->
+  login: (username, password) ->
     @element(By.model 'user.userName').clear().sendKeys username
     @element(By.model 'user.password').clear().sendKeys password
     @element(By.partialButtonText 'Login').click()
