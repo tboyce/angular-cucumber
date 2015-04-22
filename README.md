@@ -4,6 +4,7 @@ angular-cucumber
 **Prerequisites**
 * Java
 * NodeJS
+* Firefox
 
 **Getting Started**
 * Install grunt with `npm install -g grunt-cli`
