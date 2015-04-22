@@ -10,7 +10,7 @@ module.exports = ->
 
   ### GIVEN ###
   @Given /at the cafe homepage/, ->
-    url = process.env.CAFE_BASE_URL
+    url = process.env.CAFE_BASE_URL or 'http://thomasburleson.github.io/angularJS-CafeTownsend/'
     @world.visit(url)
 
   ### WHEN ###
@@ -22,8 +22,8 @@ module.exports = ->
       employees.deleteEmployee()
 
   @When /add a new employee with first name "([^"]*)", last name "([^"]*)", email "([^"]*)"/, (firstName, lastName, email)->
-    employees.addEmployee()
-    employees.setEmployeeDetails firstName, lastName, email
+    employees.addEmployee().then =>
+      employees.setEmployeeDetails firstName, lastName, email
 
   @When /set first name "([^"]*)", last name "([^"]*)", email "([^"]*)"/, (firstName, lastName, email)->
     employees.setEmployeeDetails firstName, lastName, email

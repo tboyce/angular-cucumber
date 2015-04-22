@@ -36,11 +36,15 @@ module.exports = class Homepage
   addEmployee: ->
     @element(By.id 'bAdd').click()
 
+  enterText: (el, val) ->
+    el.clear().then ->
+      el.sendKeys val
+
   setEmployeeDetails: (firstName, lastName, email) ->
-    @element(By.model 'employee.firstName').clear().sendKeys firstName
-    @element(By.model 'employee.lastName').clear().sendKeys lastName
-    @element(By.model 'employee.email').clear().sendKeys email
-    @element(By.model 'employee.startDate').clear().sendKeys '01/21/2014'
+    @enterText @element(By.model 'employee.firstName'), firstName
+    @enterText @element(By.model 'employee.lastName'), lastName
+    @enterText @element(By.model 'employee.email'), email
+    @enterText @element(By.model 'employee.startDate'), '01/21/2014'
 
   saveEmployee: ->
     @element(By.partialButtonText 'Save').click()

@@ -5,7 +5,7 @@ protractor = require 'protractor'
 
 _destroyed = false
 module.exports = class World
-  constructor: (browser = "firefox")->
+  constructor: (browser = "chrome")->
     @driver = new webdriver.Builder().
     usingServer(process.env.SELENIUM_HUB).
     withCapabilities(webdriver.Capabilities[browser]()).build()
